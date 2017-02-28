@@ -1,40 +1,47 @@
-<!DOCTYPE html>
 <html>
 <head>
-	<title>
-		Products
-	</title>
+	<title>USER's PANEL</title>
+	<style>
+		body{
+			background-image: url("img1.jpg");
+			background-repeat: no-repeat;
+			background-size: 100% 140%;
+		}
+		#goToCart{
+    		background-color: #900;
+    		color: #FFF;
+    		padding: 14px 20px;
+    		margin: 8px 0;
+    		width: 20%;
+		}
+		#logg{
+			background-color: #900;
+			color: #FFF;
+			width : 90px;
+			padding: 20px 10px;
+		}
+	</style>
 </head>
 <body>
-
-	<div align="center">
-		<h2 id="heading"></h2>
-		<table id="tab" border="2">
+	<div style="padding-left: 70px; padding-right: 70px">
+	<br><table><tr><td width="95%"><u><h2 id="heading"></h2></u></td>
+	<td ><button id="logg">Logout</button></td></tr></table>
+	<hr></div>
+		<div align="center" style="padding-top: 30px">
+		<table id="tab" border="2" style="border-collapse: collapse; height: 100px; text-align: center; width: 80%; background-color: white">
 			<tr>
-				<td>
-					Name
-				</td>
-				<td>
-					Description
-				</td>
-				<td>
-					Price
-				</td>
-				<td>
-					Availability
-				</td>
-				<td>
-					Quantity
-				</td>
-				<td>
-					Add To Cart
-				</td>
+				<th>Name</th>
+				<th>Description</th>
+				<th>Price</th>
+				<th>Availability</th>
+				<th>Quantity</th>
+				<th>Add To Cart</th>
 			</tr>
-		</table>
-		<button id="goToCart">
-			Checkout
-		</button>
-	</div>
+		</table></div><br><br>
+		<div style="padding-right: 70px; padding-left: 70px"><hr></div><br>
+		<div align="center"><button id="goToCart">CHECKOUT</button></div>
+	
+
 	<script src="js/products.js"></script>
 </body>
 </html>

@@ -1,64 +1,94 @@
 <html>
 <head>
-	<title>
-		Trying server
-	</title>
+<title>ADMIN || ADMIN's PANEL</title>
+<style>
+button{
+    background-color: #900;
+    color: #FFF;
+    padding: 14px 20px;
+    margin: 8px 0;
+    width: 20%;
+}
+body{
+	background-image: url("img1.jpg");
+	background-repeat: no-repeat;
+	background-size: 100% 140%;
+}
+.new{
+    padding: 16px;
+    padding-bottom: 30px;
+}
+span.sp2{
+    float: right;
+    padding-top: 0px;
+}
+span.sp1{
+    float: left;
+    padding-top: 0px;
+}
+a{
+    color: #900;
+}
+a.hover{
+    color: #900;
+}
+input[type=text], input[type=password]{
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+}
+</style>
 </head>
+
 <body>
-	<form>
-		<label>Name: </label>
-		<input type="text" name="name" id="name">
-		<label>Desc</label>
-		<input type="text" name="desc" id="desc">
-		<label>Price</label>
-		<input type="text" name="price" id="price">
-		<label>Availability</label>
-		<input type="text" name="avail" id="avail">
-	</form>
-	<button id="submit_btn">
-		Submit
-	</button>
+	<h2 align="center">ADMIN's PANEL</h2>
+	<div align="center">
+		<button id="hehe">Add Products</button>
+		<button id="wow">All Products</button>
+		<button id="haha">Orders</button>
+		<button id="log">Logout</button>
+	</div>
 
-	<table id="tab">
-		<tr>
-			<td>
-				Name
-			</td>
-			<td>
-				Description
-			</td>
-			<td>
-				Price
-			</td>
-			<td>
-				Available
-			</td>
-		</tr>
-	</table>
+	<div id="first" align="center" style="padding-top: 10px; display: none;">
+		<form style="width: 40%;background-color: white; align-self: center">
+			<fieldset><div class="new">
+				<label><b>Product Name</b></label>
+				<input type="text" name="name" id="name">
+				<label><b>Description</b></label>
+				<input type="text" name="desc" id="desc">
+				<label><b>Price</b></label>
+				<input type="text" name="price" id="price">
+				<label><b>Quantity</b></label>
+				<input type="text" name="avail" id="avail">
+				<button id="submit_btn">Submit</button>
+			</div></fieldset>
+		</form>
+	</div>
 
-	<table id="tab2">
+	<div align="center" style="display: none; padding-top: 20px" id="h">
+	<table id="tab" border="2" style="border-collapse: collapse; background-color: white; width: 60%;">
 		<tr>
-			<td>
-				Username
-			</td>
-			<td>
-				Name
-			</td>
-			<td>
-				Desc
-			</td>
-			<td>
-				Price
-			</td>
-			<td>
-				Bought
-			</td>
-			<td>
-				Sub Total
-			</td>
+			<th>Product Name</th>
+			<th>Description</th>
+			<th>Price</th>
+			<th>Quantity</th>
 		</tr>
-	</table>
-	
+	</table></div>
+
+	<div align="center" id="divi" style="display: none; padding-top: 20px">
+	<table id="tab2" style="border-collapse: collapse; text-align: center; background-color: white; width: 60%;" border="2">
+		<tr>
+			<th>User ID</th>
+			<th>Product Name</th>
+			<th>Description</th>
+			<th>Price</th>
+			<th>Bought</th>
+			<th>Sub Total</th>
+		</tr>
+	</table></div>
 
 	<script src="js/index.js"></script>
 </body>

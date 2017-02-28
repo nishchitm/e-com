@@ -4,8 +4,20 @@
 
     var user = sessionStorage.getItem('user');
     console.log(user);
-    document.getElementById("heading").innerHTML="Welcome "+user;
-	
+    document.getElementById("heading").innerHTML="Hello, Mr. "+user;
+	var butt = document.getElementById("logg");
+    butt.addEventListener('click', log);
+    function log(){
+        var req = new XMLHttpRequest();
+        req.open('GET','/');
+        req.send();
+        req.addEventListener('load',function(){
+            if(req.status === STATUS_OK){
+                window.open(req.responseURL);
+                console.log(req);
+            }
+        })
+    }
     var tab = document.getElementById('tab');
 	
     var cart_array = JSON.parse(localStorage.getItem('cart')) || [];
@@ -53,6 +65,7 @@
     var td2 = document.createElement('td');
 
     td1.setAttribute('colspan',4);
+    td1.textContent="TOTAL";
     tr.appendChild(td1);
 
     td2.textContent = total;

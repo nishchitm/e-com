@@ -1,28 +1,67 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>
-		Register
-	</title>
+<title>REGISTER || REGISTER PAGE</title>
+<style>
+button{
+    background-color: #900;
+    color: #FFF;
+    padding: 14px 20px;
+    margin: 8px 0;
+    width: 100%;
+}
+body{
+	background-image: url("img1.jpg");
+	background-repeat: no-repeat;
+	background-size: 100% 140%;
+}
+.new{
+    padding: 16px;
+    padding-bottom: 30px;
+}
+span.sp2{
+    float: right;
+    padding-top: 0px;
+}
+span.sp1{
+    float: left;
+    padding-top: 0px;
+}
+a{
+    color: #900;
+}
+a.hover{
+    color: #900;
+}
+input[type=text], input[type=password]{
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+}
+</style>
 </head>
 <body>
-	<form>
-		Name: <input type="text" name="name" id="name">
-		<br>
-		Email: <input type="text" name="uname" id="uname">
-		<br>
-		Number: <input type="text" name="num" id="num">
-		<br>
-		Password: <input type="password" name="pass" id="pass">
-		<br>
-	</form>
-	<button id="login_btn">
-		Login
-	</button>
-	<button id="reg_btn">
-		Register
-	</button>
-	<script src="js/register.js"></script>
+	<div align="center" style="padding-top: 10px">
+	<form style="width: 40%;background-color: white; align-self: center">
+	<fieldset><div class="new">
+  		<label><b>Username</b></label><br>
+		<input type="text" placeholder="Enter Username..." name="name" id="name"><br>
+		<label><b>Password</b></label><br>
+		<input type="password" placeholder="Enter Password..." name="pass" id="pass"><br>
+		<label><b>E-Mail</b></label><br>
+		<input type="text" placeholder="Enter e-mail..." name="uname" id="uname"><br>
+		<label><b>Mobile Number</b></label><br>
+		<input type="text" placeholder="Enter Mobile Number..." name="num" id="num"><br>
+		<input type="checkbox" checked="checked"> Remember me<br><br><br>
+	
+		<button id="reg_btn">Sign Up</button>
+		<button id="login_btn">Already a Member? Login</button>
 
+	</div></fieldset></form></div>
+
+	<script src="js/register.js"></script>
 </body>
 </html>

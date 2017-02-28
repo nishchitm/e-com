@@ -1,6 +1,13 @@
+var express = require('express');
 var http = require('http');
 var url = require('url');
 var fs = require('fs');
+var path = require('path');
+var app = express();
+
+
+app.use(express.static(path.join(__dirname,'public')));
+//app.set('views',path.join(__dirname,'views'));
 
 function readAndServe(path, contentType, response){
     fs.readFile(path, function(error,data){
@@ -25,7 +32,7 @@ function readPathFile(path, callback){
         }else{
             val = JSON.parse(contents);
         }
-        callback(val);
+        callback(error,val);
     })
 }
 
@@ -51,91 +58,96 @@ function readJSONBody(request,callback){
     });
 }
 
-http.createServer(function(request,response){
-    var pathname = url.parse(request.url).pathname;
 
-    if(request.method === "GET"){
-        if(pathname==="/"){
-            app.get("/",function(request,response){
-                readAndServe('login.html','text',response);
-            })
-            
 
-        }else if(pathname==="/index.html"){
+app.get("/",function(request,response,next){
+    readAndServe("login.html",'text',response);
+});
 
-            readAndServe("index.html",'text',response);
+app.get("/index.html",function(request,response,next){
+    readAndServe("index.html",'text',response);
+});
 
-        }else if(pathname==="/register.html"){
+app.get("/register.html",function(request,response,next){
+    readAndServe("register.html",'text',response);
+});
 
-            readAndServe("register.html","text",response);
+app.get("/products.html",function(request,response,next){
+    readAndServe("products.html",'text',response);
+});
 
-        }else if(pathname==="/products.html"){
+app.get("/cart.html",function(request,response,next){
+    readAndServe("cart.html",'text',response);
+});
 
-            readAndServe("products.html","text",response);
 
-        }else if(pathname==="/cart.html"){
 
-            readAndServe("cart.html","text",response);
 
-        }else if(pathname==="/js/index.js" || pathname==="/js/login.js" || pathname==="/js/register.js" || pathname==="/js/products.js" || pathname==="/js/cart.js"){
-            
-            readAndServe('.'+pathname,'text/javascript',response);
-        
-        }else if(pathname==="/booked"){
-            
-            readPathFile("booked",function(booked){
-                response.writeHead(200, {'Content-type': 'application/json'});
-                response.write(JSON.stringify(booked));
-                response.end();
-            })
-                
-        }else if(pathname==="/products"){
-        
-            readPathFile("products",function(tasks){
-                response.writeHead(200, {'Content-type': 'application/json'});
-                response.write(JSON.stringify(tasks));
-                response.end();
-            })
-        
-        }else if(pathname==="/users"){
-        
-            readPathFile("users",function(users){
-                response.writeHead(200, {'Content-type': 'application/json'});
-                response.write(JSON.stringify(users));
-                response.end();
-            })
-        
-        }else{
-        
-            response.end();
-        
+
+app.get("/booked",function(request,response){
+    readPathFile("booked",function(error,tasks) {
+        if(error){
+            response.status(500).send;
         }
-    
-    }else if(request.method === "POST"){
-        if(pathname==="/products"){
-            readJSONBody(request,function(val){
-                writePathFile("products",val,function(){
-                    response.end();
-                });
-            });
-        }else if(pathname==="/users"){
-            readJSONBody(request,function(val){
-                writePathFile("users",val,function(){
-                    response.end();
-                });
-            });
-        }else if(pathname==="/booked"){
-            readJSONBody(request,function(val){
-                writePathFile("booked",val,function(){
-                    response.end();
-                });
-            });
-        }else{
-            response.end();
-        }
-    }else{
+
+        response.writeHead(200, {'Content-type': 'application/json'});
+        response.write(JSON.stringify(tasks));
         response.end();
-    }
-}).listen(8000,'127.0.0.1');
+    });
+});
+
+app.get("/products",function(request,response){
+    readPathFile("products",function(error,tasks) {
+        if(error){
+            response.status(500).send;
+        }
+
+        response.writeHead(200, {'Content-type': 'application/json'});
+        response.write(JSON.stringify(tasks));
+        response.end();
+    });
+});
+
+app.get("/users",function(request,response){
+    readPathFile("users",function(error,tasks) {
+        if(error){
+            response.status(500).send;
+        }
+
+        response.writeHead(200, {'Content-type': 'application/json'});
+        response.write(JSON.stringify(tasks));
+        response.end();
+    });
+});
+
+
+
+
+
+app.post("/booked",function(request,response){
+    readJSONBody(request,function(val){
+        writePathFile("booked",val,function(){
+            response.end();
+        });
+    });
+});
+
+app.post("/users",function(request,response){
+    readJSONBody(request,function(val){
+        writePathFile("users",val,function(){
+            response.end();
+        });
+    });
+});
+
+app.post("/products",function(request,response){
+    readJSONBody(request,function(val){
+        writePathFile("products",val,function(){
+            response.end();
+        });
+    });
+});
+
+http.createServer(app).listen(8000,'127.0.0.1');
 
 console.log('Running on 127.0.0.1:8000');

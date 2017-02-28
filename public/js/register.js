@@ -6,7 +6,6 @@
     var b = document.getElementById("uname");
     var c = document.getElementById("num");
     var d = document.getElementById("pass");
-
     var submit = document.getElementById("reg_btn");
     var log = document.getElementById("login_btn");
     var users = new Array();
@@ -52,7 +51,7 @@
 
     log.addEventListener("click",function(event){
         req = new XMLHttpRequest;
-        req.open('GET','/login.html');
+        req.open('GET','/');
         req.send();
         req.addEventListener('load',function(){
             if(req.status === STATUS_OK){
